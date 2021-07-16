@@ -15,7 +15,7 @@ contract StarNotary is ERC721 {
     // name: Is a short name to your token
     // symbol: Is a short string like 'USD' -> 'American Dollar'
     string public constant name = "Udacity Token";
-    string public constant symbol = "UDC"
+    string public constant symbol = "UDC";
     // mapping the Star with the Owner Address
     mapping(uint256 => Star) public tokenIdToStarInfo;
     // mapping the TokenId and price
@@ -57,13 +57,17 @@ contract StarNotary is ERC721 {
     // Implement Task 1 lookUptokenIdToStarInfo
     function lookUptokenIdToStarInfo (uint _tokenId) public view returns (string memory) {
         //1. You should return the Star saved in tokenIdToStarInfo mapping
+        return tokenIdToStarInfo[_tokenId].name;
     }
 
     // Implement Task 1 Exchange Stars function
     function exchangeStars(uint256 _tokenId1, uint256 _tokenId2) public {
         //1. Passing to star tokenId you will need to check if the owner of _tokenId1 or _tokenId2 is the sender
+        require(ownerOf(_tokenId1) == msg.sender || ownerOf(_tokenId2) == msg.sender, "The sender does not own a token");
         //2. You don't have to check for the price of the token (star)
         //3. Get the owner of the two tokens (ownerOf(_tokenId1), ownerOf(_tokenId1)
+        address owner1Address = ownerOf(_tokenId1);
+        address owner1Address = ownerOf(_tokenId2);
         //4. Use _transferFrom function to exchange the tokens.
     }
 
